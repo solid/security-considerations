@@ -21,7 +21,7 @@ Editor: [elf Pavlik](https://elf-pavlik.hackers4peace.net/)
 Metadata Order: This version, Latest published version, Editor's Draft, Test Suite, Created, Modified, *, !*
 Metadata Include: Editor's Draft off
 Abstract:
-  This document describes best current security practice for OAuth 2.0.
+  This document describes best current security practice for Solid.
 Status Text:
   This section describes the status of this document at the time of its publication.
 
@@ -52,7 +52,7 @@ that the victim's account can access.
 
 
 ### Use Solid-OIDC DPoP-bound ID tokens to make authenticated requests
-
+If a user is logged-in to an application hosted on the Solid server, a malicious application on the same Solid server could abuse this login to make authenticated requests. Here we use [[SolidOS]] as an example for the benign application.
 #### Prerequisites
 
 * The attacker has append/write access to a publicly readable folder/file on the server
@@ -70,7 +70,7 @@ The attacker writes a malicious `text/html` file to the server. When this file i
 
 
 ### Steal login credentials
-
+If a user saved credentials for an application on the same site of the Solid server, a malicious application could steal these credentials.
 #### Prerequisites
 
 * The attacker has append/write access to a publicly readable folder/file on the server
