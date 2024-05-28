@@ -8,21 +8,19 @@ Level: 1
 Status: w3c/CG-DRAFT
 Group: Solid Community Group
 Favicon: https://solidproject.org/TR/solid.svg
-ED: https://solid.github.io/specification/security-best-practice
-TR: https://solidproject.org/TR/security-best-practice
+ED: https://solid.github.io/security-bp/
 !Created: Feb 20, 2024
 !Modified: [DATE]
-!Editor's Draft: [https://solid.github.io/specification/security-best-practice](https://solid.github.io/specification/security-best-practice)
+!Editor's Draft: [https://solid.github.io/security-bp/](https://solid.github.io/specification/security-best-practice)
 !Version: 0.1.0
-Repository: https://github.com/solid/security-best-practice
+Repository: https://github.com/solid/security-bp
 Inline Github Issues: title
 Markup Shorthands: markdown yes
 Max ToC Depth: 2
 Editor: [elf Pavlik](https://elf-pavlik.hackers4peace.net/)
 Metadata Order: This version, Latest published version, Editor's Draft, Test Suite, Created, Modified, *, !*
-Metadata Include: Editor's Draft off
 Abstract:
-This document describes a few issues related to security in the Solid ecosystem.  
+  This document describes a few issues related to security in the Solid ecosystem.  
 Status Text:
   This section describes the status of this document at the time of its publication.
 
@@ -44,6 +42,8 @@ Status Text:
 
 ## Solid OIDC
 
+[[Solid.OIDC]]
+
 Issue(3):
 
 Issue(4):
@@ -51,9 +51,11 @@ Issue(4):
 Issue(5):
 
 Issue(6):
+
+
 ## Serving user-created files ## {#serving-user-created-files}
 
-When Solid Servers serve files created by different users, they break the common Web assumption that files and/or applications served within the same origin are automatically equally trustworthy.
+When Solid Servers [[Solid.Protocol]] serve files created by different users, they break the common Web assumption that files and/or applications served within the same origin are automatically equally trustworthy.
 
 An attacker could be any agent — human, browser, browser-based application,
 etc. — with a WebID. They need append/write access to the user's server

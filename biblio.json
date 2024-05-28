@@ -6,6 +6,20 @@
         "href": "https://communitysolidserver.github.io/",
         "title": "Community Solid Server"
     },
+    "Solid.OIDC": {
+        "authors": [
+            "Aaron Coburn; elf Pavlik; Dmitri Zagidulin"
+        ],
+        "href": "https://solidproject.org/TR/oidc",
+        "title": "Solid OIDC"
+    },
+    "Solid.Protocol": {
+        "authors": [
+            "Sarven Capadisli; Tim Berners-Lee; Kjetil Kjernsmo"
+        ],
+        "href": "https://solidproject.org/TR/protocol",
+        "title": "Solid Protocol"
+    },
     "SolidOS": {
         "authors": [
             "SolidOS Team"
