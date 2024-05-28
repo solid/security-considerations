@@ -11,7 +11,7 @@ Favicon: https://solidproject.org/TR/solid.svg
 ED: https://solid.github.io/security-bp/
 !Created: Feb 20, 2024
 !Modified: [DATE]
-!Editor's Draft: [https://solid.github.io/security-bp/](https://solid.github.io/specification/security-best-practice)
+!Editor's Draft: [https://solid.github.io/security-bp/](https://solid.github.io/security-bp/)
 !Version: 0.1.0
 Repository: https://github.com/solid/security-bp
 Inline Github Issues: title
