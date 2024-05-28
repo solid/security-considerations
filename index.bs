@@ -1,0 +1,122 @@
+<pre class='metadata'>
+Title: Solid Security Considerations
+Boilerplate: issues-index no
+Boilerplate: omit conformance
+Local Boilerplate: logo yes
+Shortname: solid-best-security-practice
+Level: 1
+Status: w3c/CG-DRAFT
+Group: Solid Community Group
+Favicon: https://solidproject.org/TR/solid.svg
+ED: https://solid.github.io/security-bp/
+!Created: Feb 20, 2024
+!Modified: [DATE]
+!Editor's Draft: [https://solid.github.io/security-bp/](https://solid.github.io/specification/security-best-practice)
+!Version: 0.1.0
+Repository: https://github.com/solid/security-bp
+Inline Github Issues: title
+Markup Shorthands: markdown yes
+Max ToC Depth: 2
+Editor: [elf Pavlik](https://elf-pavlik.hackers4peace.net/)
+Metadata Order: This version, Latest published version, Editor's Draft, Test Suite, Created, Modified, *, !*
+Abstract:
+  This document describes a few issues related to security in the Solid ecosystem.  
+Status Text:
+  This section describes the status of this document at the time of its publication.
+
+  This document was published by the [Solid Community Group](https://www.w3.org/community/solid/) as
+  an Editor’s Draft. The information in this document is
+  still subject to change. You are invited to [contribute](https://github.com/solid/solid-oidc/issues)
+  any feedback, comments, or questions you might have.
+
+  Publication as an Editor’s Draft does not imply endorsement by the W3C Membership. This is a draft
+  document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate
+  to cite this document as other than work in progress.
+
+  This document was produced by a group operating under the [W3C Community Contributor License Agreement
+  (CLA)](https://www.w3.org/community/about/process/cla/). A human-readable
+  [summary](https://www.w3.org/community/about/process/cla-deed/) is available.
+</pre>
+
+# Attacks and Mitigations # {#attacks-and-mitigations}
+
+## Solid OIDC
+
+[[Solid.OIDC]]
+
+Issue(3):
+
+Issue(4):
+
+Issue(5):
+
+Issue(6):
+
+
+## Serving user-created files ## {#serving-user-created-files}
+
+When Solid Servers [[Solid.Protocol]] serve files created by different users, they break the common Web assumption that files and/or applications served within the same origin are automatically equally trustworthy.
+
+An attacker could be any agent — human, browser, browser-based application,
+etc. — with a WebID. They need append/write access to the user's server
+to store a malicious HTML file. They might have this access because the
+user had allowed them to write a blog post, or because they have their own
+storage in a different path on the same domain, among other possibilities.
+ 
+Impact of the scenario: The attacker, pretending to be the victim, can access anything
+that the victim's account can access.
+
+
+### Use Solid-OIDC DPoP-bound ID tokens to make authenticated requests
+
+If a user is logged in to an application hosted on the Solid server, a 
+malicious application on the same Solid server could abuse this login to 
+make authenticated requests. Here we use [[SolidOS]] as an example of a 
+benign application.
+
+#### Prerequisites
+
+* When multiple agents are allowed to perform append or write operations in a storage, the attacker has append or write access to a publicly readable resource in a storage.
+* The server serves [[SolidOS]] under the same domain (e.g., by default, [[Community.Solid.Server]] serves everything under the same domain).
+* Once the victim is logged in via [[SolidOS]], any new session is automatically logged in to the same account.
+
+#### Attack
+
+The attacker writes a malicious `text/html` file to the server. When this file is opened by the user:
+
+1. It opens [[SolidOS]] in a new tab and saves the window reference. (If the writer of this document recalls correctly, opening any non-existent resource from the server returns [[SolidOS]].)
+1. [[SolidOS]] automatically logs in, as the user who logged in there previously.
+1. The `text/html` file can access [[SolidOS]] via the window reference, including performing authenticated fetch.
+1. The `text/html` file can make any request in the name of the currently logged-in user, through this authenticated fetch.
+
+
+### Steal login credentials
+
+If a user saves credentials for an application on the same site as the Solid server, a malicious application could steal these credentials.
+
+#### Prerequisites
+
+* The attacker has append/write access to a publicly readable folder/file on the server.
+* The victim uses the IDP of the (small) [[Community.Solid.Server]] server.
+* The storages are on the same domain as the IDP (default for [[Community.Solid.Server]]).
+* The user saved their login credentials (`/idp/login/` for [[Community.Solid.Server]]) via the browser or a password manager extension.
+
+
+#### Attack
+
+The attacker writes a malicious `text/html` file to the server. Depending on the tool used to store the login credentials, the actual autofill/suggestion behaviour can vary. For instance, if a user who saved login credentials with Chrome opens the malicious file:
+
+1. The victim performs any interaction with the site (e.g., clicking on a cookie banner).
+1. Chrome automatically fills in `<input>` fields for the user name and password with the saved credentials.
+1. The malicious `text/html` file can read and send the credentials to the attacker.
+1. The attacker can use the credentials to log in with the IDP of the victim.
+
+## Considerations
+
+Servers are strongly encouraged to consider the countermeasures in the context of the use cases they want to enable or disable on a given storage. For instance, using `Content-Security-Policy: sandbox` will universally prohibit various functionalities for applications, including but not limited to accessing local storage, executing scripts, using forms, interacting with plugins, or including external content. This broad range of restrictions may not be desirable for various categories of applications that rely on client-side storage mechanisms, collaborative features, or dynamic content interaction.
+
+### Countermeasures ### {#serving-user-created-files-countermeasures}
+
+* Servers are encouraged to apply security measures when serving user-created files.
+* Multiple agents can create files on the same server, which could render `same-origin` security boundaries useless.
+* As one possible countermeasure, servers could add a [`Content-Security-Policy: sandbox`](https://www.w3.org/TR/CSP3/#directive-sandbox) header to artificially enable `same-origin` security policies for files served on the same origin.
