@@ -115,6 +115,8 @@ The attacker writes a malicious `text/html` file to the server. Depending on the
 
 Servers are strongly encouraged to consider the countermeasures in the context of the use cases they want to enable or disable on a given storage. For instance, using `Content-Security-Policy: sandbox` will universally prohibit various functionalities for applications, including but not limited to accessing local storage, executing scripts, using forms, interacting with plugins, or including external content. This broad range of restrictions may not be desirable for various categories of applications that rely on client-side storage mechanisms, collaborative features, or dynamic content interaction.
 
+Servers are encouraged to check the applicability of security policies based on user's authentication state as well as resource semantics. Some attacks might only be applicable for authenticated requests, so restricting functionalities could unnecessarily prevent non-affected users from using certain features.
+
 ### Countermeasures ### {#serving-user-created-files-countermeasures}
 
 * Servers are encouraged to apply security measures when serving user-created files.
