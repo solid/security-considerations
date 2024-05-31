@@ -8,7 +8,7 @@
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://solid.github.io/security-bp/" rel="canonical">
   <link href="https://solidproject.org/TR/solid.svg" rel="icon">
-  <meta content="054e000f3e322cb8a9f667c040c4c2512ad94949" name="document-revision">
+  <meta content="a76624cbdc1f87c8a7ceb68288fc9195cb4e9885" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -547,7 +547,6 @@ benign application.</p>
    </ol>
    <h3 class="heading settled" data-level="1.3" id="considerations"><span class="secno">1.3. </span><span class="content">Considerations</span><a class="self-link" href="#considerations"></a></h3>
    <p>Servers are strongly encouraged to consider the countermeasures in the context of the use cases they want to enable or disable on a given storage. For instance, using <code>Content-Security-Policy: sandbox</code> will universally prohibit various functionalities for applications, including but not limited to accessing local storage, executing scripts, using forms, interacting with plugins, or including external content. This broad range of restrictions may not be desirable for various categories of applications that rely on client-side storage mechanisms, collaborative features, or dynamic content interaction.</p>
-   <p>Servers are encouraged to check the applicability of security policies based on user’s authentication state as well as resource semantics. Some attacks might only be applicable for authenticated requests, so restricting functionalities could unnecessarily prevent non-affected users from using certain features.</p>
    <h4 class="heading settled" data-level="1.3.1" id="serving-user-created-files-countermeasures"><span class="secno">1.3.1. </span><span class="content">Countermeasures</span><a class="self-link" href="#serving-user-created-files-countermeasures"></a></h4>
    <ul>
     <li data-md>
