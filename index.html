@@ -6,9 +6,9 @@
   <meta content="w3c/CG-DRAFT" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
-  <link href="https://solid.github.io/security-bp/" rel="canonical">
+  <link href="https://solid.github.io/security-considerations/" rel="canonical">
   <link href="https://solidproject.org/TR/solid.svg" rel="icon">
-  <meta content="a76624cbdc1f87c8a7ceb68288fc9195cb4e9885" name="document-revision">
+  <meta content="3ac117fa6e2d5877680ef1167b7893db8b56bf23" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -419,15 +419,15 @@ dfn > a.self-link::before      { content: "#"; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://solid.github.io/security-bp/">https://solid.github.io/security-bp/</a>
+      <dd><a class="u-url" href="https://solid.github.io/security-considerations/">https://solid.github.io/security-considerations/</a>
       <dt>Editor's Draft:
-      <dd><a href="https://solid.github.io/security-bp/">https://solid.github.io/security-bp/</a>
+      <dd><a href="https://solid.github.io/security-considerations/">https://solid.github.io/security-considerations/</a>
       <dt>Created:
       <dd>Feb 20, 2024
       <dt>Modified:
       <dd>31 May 2024
       <dt>Issue Tracking:
-      <dd><a href="https://github.com/solid/security-bp/issues/">GitHub</a>
+      <dd><a href="https://github.com/solid/security-considerations/issues/">GitHub</a>
       <dt class="editor">Editor:
       <dd class="editor p-author h-card vcard"><span class="p-name fn"><a href="https://elf-pavlik.hackers4peace.net/">elf Pavlik</a></span>
       <dt>Version:
@@ -481,10 +481,10 @@ to cite this document as other than work in progress.</p>
    <h2 class="heading settled" data-level="1" id="attacks-and-mitigations"><span class="secno">1. </span><span class="content">Attacks and Mitigations</span><a class="self-link" href="#attacks-and-mitigations"></a></h2>
    <h3 class="heading settled" data-level="1.1" id="solid-oidc"><span class="secno">1.1. </span><span class="content">Solid OIDC</span><a class="self-link" href="#solid-oidc"></a></h3>
    <p><a data-link-type="biblio" href="#biblio-solidoidc" title="Solid OIDC">[Solid.OIDC]</a></p>
-   <div class="issue no-marker" id="issue-d41d8cd9"><a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/solid/security-bp/issues/3" style="text-transform:none">solid/security-bp/3</a><a href="https://github.com/solid/security-bp/issues/3">Document attacks possible when WebID Document is hosted in a Solid Storage</a></div>
-   <div class="issue no-marker" id="issue-d41d8cd9①"><a class="self-link" href="#issue-d41d8cd9①"></a><a class="marker" href="https://github.com/solid/security-bp/issues/4" style="text-transform:none">solid/security-bp/4</a><a href="https://github.com/solid/security-bp/issues/4">Document attacks possible when hosting Soild-OIDC Provider on the same origin as storages</a></div>
-   <div class="issue no-marker" id="issue-d41d8cd9②"><a class="self-link" href="#issue-d41d8cd9②"></a><a class="marker" href="https://github.com/solid/security-bp/issues/5" style="text-transform:none">solid/security-bp/5</a><a href="https://github.com/solid/security-bp/issues/5">Document attacks possible when Solid-OIDC issuer is compromised</a></div>
-   <div class="issue no-marker" id="issue-d41d8cd9③"><a class="self-link" href="#issue-d41d8cd9③"></a><a class="marker" href="https://github.com/solid/security-bp/issues/6" style="text-transform:none">solid/security-bp/6</a><a href="https://github.com/solid/security-bp/issues/6">Document possible phishing attacks during authentication with Solid-OIDC</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9"><a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/solid/security-considerations/issues/3" style="text-transform:none">solid/security-considerations/3</a><a href="https://github.com/solid/security-considerations/issues/3">Document attacks possible when WebID Document is hosted in a Solid Storage</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9①"><a class="self-link" href="#issue-d41d8cd9①"></a><a class="marker" href="https://github.com/solid/security-considerations/issues/4" style="text-transform:none">solid/security-considerations/4</a><a href="https://github.com/solid/security-considerations/issues/4">Document attacks possible when hosting Soild-OIDC Provider on the same origin as storages</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9②"><a class="self-link" href="#issue-d41d8cd9②"></a><a class="marker" href="https://github.com/solid/security-considerations/issues/5" style="text-transform:none">solid/security-considerations/5</a><a href="https://github.com/solid/security-considerations/issues/5">Document attacks possible when Solid-OIDC issuer is compromised</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9③"><a class="self-link" href="#issue-d41d8cd9③"></a><a class="marker" href="https://github.com/solid/security-considerations/issues/6" style="text-transform:none">solid/security-considerations/6</a><a href="https://github.com/solid/security-considerations/issues/6">Document possible phishing attacks during authentication with Solid-OIDC</a></div>
    <h3 class="heading settled" data-level="1.2" id="serving-user-created-files"><span class="secno">1.2. </span><span class="content">Serving user-created files</span><a class="self-link" href="#serving-user-created-files"></a></h3>
    <p>When Solid Servers <a data-link-type="biblio" href="#biblio-solidprotocol" title="Solid Protocol">[Solid.Protocol]</a> serve files created by different users, they break the common Web assumption that files and/or applications served within the same origin are automatically equally trustworthy.</p>
    <p>An attacker could be any agent — human, browser, browser-based application,
