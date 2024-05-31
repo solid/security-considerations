@@ -8,12 +8,12 @@ Level: 1
 Status: w3c/CG-DRAFT
 Group: Solid Community Group
 Favicon: https://solidproject.org/TR/solid.svg
-ED: https://solid.github.io/security-bp/
+ED: https://solid.github.io/security-considerations/
 !Created: Feb 20, 2024
 !Modified: [DATE]
-!Editor's Draft: [https://solid.github.io/security-bp/](https://solid.github.io/security-bp/)
+!Editor's Draft: [https://solid.github.io/security-considerations/](https://solid.github.io/security-considerations/)
 !Version: 0.1.0
-Repository: https://github.com/solid/security-bp
+Repository: https://github.com/solid/security-considerations
 Inline Github Issues: title
 Markup Shorthands: markdown yes
 Max ToC Depth: 2
