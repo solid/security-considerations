@@ -118,3 +118,39 @@ The attacker writes a malicious `text/html` file to the server. Depending on the
 #### Considerations
 
 Servers are strongly encouraged to consider the countermeasures in the context of the use cases they want to enable or disable on a given storage. For instance, using `Content-Security-Policy: sandbox` will universally prohibit various functionalities for applications, including but not limited to accessing local storage, executing scripts, using forms, interacting with plugins, or including external content. This broad range of restrictions may not be desirable for various categories of applications that rely on client-side storage mechanisms, collaborative features, or dynamic content interaction.
+
+## Protecting WebID Document ## {#protecting-webid-document}
+
+Solid access policy enforcement heavily relies on the identities of agents. Requesting Parties are identified
+with [[WebID]] and applications with ClientID [[Solid.OIDC]].
+User's WebID Document includes trust anchors, like designation to their [[Solid.OIDC]] Provider (aka. issuer).
+In other approaches, public keys could be published or discoverable via the user's WebID Document.
+
+### Fully impersonate the user
+
+If the malicious app can write or append to the user's WebID, it could inject trust anchors, allowing complete impersonation.
+
+#### Prerequisites
+
+* Authorization system depends on a specific trust anchor in the user's WebID Document.
+    For example, [[Solid.OIDC]] issuer designation or pubic keys/keyset.
+* User authorizes a malicious application to write or append to their WebID Document.
+
+#### Attack
+
+* The attacker publishes a malicious application, such as generating cool AI avatars and setting them in the user's profile.
+* User authenticates with the malicious application
+  * If the access control system enforces client constraints, the user also authorizes the application to write or append to their WebID Document.
+* Application injects attacker's trust anchor into the user's WebID Document 
+* The attacker can completely impersonate the user, which allows full access to all the data owned by the user.
+    As well as any data shared with that user by others, with the full extent of access they granted to the user.
+
+### Countermeasures
+
+* There is no requirement to expose WebID Document via [[Solid.Protocol]] and host it in Solid Storage.
+    WebID providers can support only a set of discovery features relying on the WebID document and provide
+    highly secured interface to change it, possibly requiring two-factor authentication.
+
+#### Considerations
+Users need a way to manage their social profiles, approaches like linking from the user's WebID Document to
+less protected vcard are available to accomplish it without opening discussed attack vectors.

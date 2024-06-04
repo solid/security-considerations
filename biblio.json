@@ -26,5 +26,15 @@
         ],
         "href": "https://solidos.solidcommunity.net/",
         "title": "SolidOS"
+    },
+    "WebID": {
+        "authors": [
+            "Andrei Sambra",
+            "Henry Story",
+            "Tim Berners-Lee"
+        ],
+        "href": "https://www.w3.org/2005/Incubator/webid/spec/identity/",
+        "title": "WebID 1.0",
+        "publisher": "WebID Incubator Group"
     }
 }
