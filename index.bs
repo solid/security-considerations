@@ -2,12 +2,10 @@
 Title: Solid Security Considerations
 Boilerplate: issues-index no
 Boilerplate: omit conformance
-Local Boilerplate: logo yes
 Shortname: solid-best-security-practice
 Level: 1
 Status: w3c/CG-DRAFT
 Group: Solid Community Group
-Favicon: https://solidproject.org/TR/solid.svg
 ED: https://solid.github.io/security-considerations/
 !Created: Feb 20, 2024
 !Modified: [DATE]
