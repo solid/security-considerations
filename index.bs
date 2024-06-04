@@ -109,12 +109,12 @@ The attacker writes a malicious `text/html` file to the server. Depending on the
 1. The malicious `text/html` file can read and send the credentials to the attacker.
 1. The attacker can use the credentials to log in with the IDP of the victim.
 
-## Considerations
-
-Servers are strongly encouraged to consider the countermeasures in the context of the use cases they want to enable or disable on a given storage. For instance, using `Content-Security-Policy: sandbox` will universally prohibit various functionalities for applications, including but not limited to accessing local storage, executing scripts, using forms, interacting with plugins, or including external content. This broad range of restrictions may not be desirable for various categories of applications that rely on client-side storage mechanisms, collaborative features, or dynamic content interaction.
-
 ### Countermeasures ### {#serving-user-created-files-countermeasures}
 
 * Servers are encouraged to apply security measures when serving user-created files.
 * Multiple agents can create files on the same server, which could render `same-origin` security boundaries useless.
 * As one possible countermeasure, servers could add a [`Content-Security-Policy: sandbox`](https://www.w3.org/TR/CSP3/#directive-sandbox) header to artificially enable `same-origin` security policies for files served on the same origin.
+
+#### Considerations
+
+Servers are strongly encouraged to consider the countermeasures in the context of the use cases they want to enable or disable on a given storage. For instance, using `Content-Security-Policy: sandbox` will universally prohibit various functionalities for applications, including but not limited to accessing local storage, executing scripts, using forms, interacting with plugins, or including external content. This broad range of restrictions may not be desirable for various categories of applications that rely on client-side storage mechanisms, collaborative features, or dynamic content interaction.
