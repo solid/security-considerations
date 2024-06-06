@@ -121,34 +121,36 @@ Servers are strongly encouraged to consider the countermeasures in the context o
 
 ## Protecting WebID Document ## {#protecting-webid-document}
 
-Solid access policy enforcement heavily relies on the identities of agents. Requesting Parties are identified
-with [[WebID]] and applications with ClientID [[Solid.OIDC]].
-User's WebID Document includes trust anchors, like designation to their [[Solid.OIDC]] Provider (aka. issuer).
+Solid access policy enforcement relies heavily on the identities of agents. Requesting Parties are identified
+by [[WebID]] and applications by ClientID [[Solid.OIDC]].
+A User's WebID Document includes trust anchors, like designation of their [[Solid.OIDC]] Provider (also known as _issuer_).
 In other approaches, public keys could be published or discoverable via the user's WebID Document.
 
 ### Fully impersonate the user
 
-If the malicious app can write or append to the user's WebID, it could inject trust anchors, allowing complete impersonation.
+If a malicious app can write or append to the user's WebID Document,
+it could inject trust anchors, allowing complete impersonation.
 
-#### Prerequisites
+#### Exploit Prerequisites
 
-* Authorization system depends on a specific trust anchor in the user's WebID Document.
+* Solid's authorization system depends on a specific trust anchor in the user's WebID Document.
     For example, [[Solid.OIDC]] issuer designation or pubic keys/keyset.
-* User authorizes a malicious application to write or append to their WebID Document.
+* User authorizes a malicious Solid application to write or append to their WebID Document.
 
 #### Attack
 
-* The attacker publishes a malicious application, such as generating cool AI avatars and setting them in the user's profile.
-* User authenticates with the malicious application
+* The attacker publishes an attractive malicious application, such as one that generates cool AI avatars and setting them in the user's profile.
+* User authenticates with the malicious application.
   * If the access control system enforces client constraints, the user also authorizes the application to write or append to their WebID Document.
-* Application injects attacker's trust anchor into the user's WebID Document 
-* The attacker can completely impersonate the user, which allows full access to all the data owned by the user.
-    As well as any data shared with that user by others, with the full extent of access they granted to the user.
+* Application injects attacker's trust anchor into the user's WebID Document.
+* The attacker can now completely impersonate the user, with full access to all the data owned by the user,
+    as well as access to any data shared with that user by others, to the full extent they granted to the impersonated user.
 
 ### Countermeasures
 
-* There is no requirement to expose WebID Document via [[Solid.Protocol]] and host it in Solid Storage.
-    WebID providers can support only a set of discovery features relying on the WebID document and provide
+* There is no requirement to expose WebID Document via [[Solid.Protocol]] nor to host it in Solid Storage.
+    Service providers who offer hosting of WebID Documents can minimally support 
+    a set of discovery features that rely on the WebID document and provide a
     highly secured interface to change it, possibly requiring two-factor authentication.
 
 #### Considerations
