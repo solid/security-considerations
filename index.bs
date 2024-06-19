@@ -111,7 +111,6 @@ The attacker writes a malicious `text/html` file to the server. Depending on the
 
 ### Countermeasures ### {#serving-user-created-files-countermeasures}
 
-* Servers are encouraged to apply security measures when serving user-created files.
 * Multiple agents can create files on the same server, which could render `same-origin` security boundaries useless.
 * As one possible countermeasure, servers could add a [`Content-Security-Policy: sandbox`](https://www.w3.org/TR/CSP3/#directive-sandbox) header to artificially enable `same-origin` security policies for files served on the same origin.
 
