@@ -8,7 +8,7 @@
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://solid.github.io/security-considerations/" rel="canonical">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="f7e0a777ad76c83c0cebe69618f45ae2babe17c5" name="document-revision">
+  <meta content="d2dc6d6725fc74904201bf5e9bd8d0c644334b56" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -468,6 +468,7 @@ to cite this document as other than work in progress.</p>
      <ol class="toc">
       <li><a href="#solid-oidc"><span class="secno">1.1</span> <span class="content">Solid OIDC</span></a>
       <li><a href="#serving-user-created-files"><span class="secno">1.2</span> <span class="content">Serving user-created files</span></a>
+      <li><a href="#protecting-webid-document"><span class="secno">1.3</span> <span class="content">Protecting WebID Document</span></a>
      </ol>
     <li>
      <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
@@ -553,6 +554,37 @@ benign application.</p>
    </ul>
    <h5 class="heading settled" data-level="1.2.3.1" id="considerations"><span class="secno">1.2.3.1. </span><span class="content">Considerations</span><a class="self-link" href="#considerations"></a></h5>
    <p>Servers are strongly encouraged to consider the countermeasures in the context of the use cases they want to enable or disable on a given storage. For instance, using <code>Content-Security-Policy: sandbox</code> will universally prohibit various functionalities for applications, including but not limited to accessing local storage, executing scripts, using forms, interacting with plugins, or including external content. This broad range of restrictions may not be desirable for various categories of applications that rely on client-side storage mechanisms, collaborative features, or dynamic content interaction.</p>
+   <h3 class="heading settled" data-level="1.3" id="protecting-webid-document"><span class="secno">1.3. </span><span class="content">Protecting WebID Document</span><a class="self-link" href="#protecting-webid-document"></a></h3>
+   <p>Solid access policy enforcement heavily relies on the identities of agents. Requesting Parties are identified
+with <a data-link-type="biblio" href="#biblio-webid" title="WebID 1.0">[WebID]</a> and applications with ClientID <a data-link-type="biblio" href="#biblio-solidoidc" title="Solid OIDC">[Solid.OIDC]</a>.
+User’s WebID Document includes trust anchors, like designation to their <a data-link-type="biblio" href="#biblio-solidoidc" title="Solid OIDC">[Solid.OIDC]</a> Provider (aka. issuer).
+In other approaches, public keys could be published or discoverable via the user’s WebID Document.</p>
+   <h4 class="heading settled" data-level="1.3.1" id="fully-impersonate-the-user"><span class="secno">1.3.1. </span><span class="content">Fully impersonate the user</span><a class="self-link" href="#fully-impersonate-the-user"></a></h4>
+   <p>If the malicious app can write or append to the user’s WebID, it could inject trust anchors, allowing complete impersonation.</p>
+   <h5 class="heading settled" data-level="1.3.1.1" id="prerequisites②"><span class="secno">1.3.1.1. </span><span class="content">Prerequisites</span><a class="self-link" href="#prerequisites②"></a></h5>
+   <ul>
+    <li data-md>
+     <p>Authorization system depends on a specific trust anchor in the user’s WebID Document.
+For example, <a data-link-type="biblio" href="#biblio-solidoidc" title="Solid OIDC">[Solid.OIDC]</a> issuer designation or pubic keys/keyset.</p>
+    <li data-md>
+     <p>User authorizes a malicious application to write or append to their WebID Document.</p>
+   </ul>
+   <h5 class="heading settled" data-level="1.3.1.2" id="attack②"><span class="secno">1.3.1.2. </span><span class="content">Attack</span><a class="self-link" href="#attack②"></a></h5>
+   <ul>
+    <li data-md>
+     <p>The attacker publishes a malicious application, such as generating cool AI avatars and setting them in the user’s profile.</p>
+    <li data-md>
+     <p>User authenticates with the malicious application</p>
+    <li data-md>
+     <p>If the access control system enforces client constraints, the user also authorizes the application to write or append to their WebID Document.</p>
+    <li data-md>
+     <p>Application injects attacker’s trust anchor into the user’s WebID Document</p>
+    <li data-md>
+     <p>The attacker can completely impersonate the user, which allows full access to all the data owned by the user.
+As well as any data shared with that user by others, with the full extent of access they granted to the user.</p>
+   </ul>
+   <h4 class="heading settled" data-level="1.3.2" id="countermeasures"><span class="secno">1.3.2. </span><span class="content">Countermeasures</span><a class="self-link" href="#countermeasures"></a></h4>
+   <div class="issue no-marker" id="issue-d41d8cd9④"><a class="self-link" href="#issue-d41d8cd9④"></a><a class="marker" href="https://github.com/solid/security-considerations/issues/9" style="text-transform:none">solid/security-considerations/9</a><a href="https://github.com/solid/security-considerations/issues/9">initial WebID Document considerations</a></div>
   </main>
 <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -566,4 +598,6 @@ benign application.</p>
    <dd>Sarven Capadisli; Tim Berners-Lee; Kjetil Kjernsmo. <a href="https://solidproject.org/TR/protocol"><cite>Solid Protocol</cite></a>. URL: <a href="https://solidproject.org/TR/protocol">https://solidproject.org/TR/protocol</a>
    <dt id="biblio-solidos">[SolidOS]
    <dd>SolidOS Team. <a href="https://solidos.solidcommunity.net/"><cite>SolidOS</cite></a>. URL: <a href="https://solidos.solidcommunity.net/">https://solidos.solidcommunity.net/</a>
+   <dt id="biblio-webid">[WebID]
+   <dd>Andrei Sambra; Henry Story; Tim Berners-Lee. <a href="https://www.w3.org/2005/Incubator/webid/spec/identity/"><cite>WebID 1.0</cite></a>. URL: <a href="https://www.w3.org/2005/Incubator/webid/spec/identity/">https://www.w3.org/2005/Incubator/webid/spec/identity/</a>
   </dl>
