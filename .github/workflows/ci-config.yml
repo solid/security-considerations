@@ -1,0 +1,30 @@
+# Workflow for verifying bikeshed documents processing
+
+name: Verify processing
+on:
+  # only concerned with gating PRs to the main branch
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+
+      - name: Upgrade pip
+        run: python3 -m pip install --upgrade pip
+
+      - name: Install Bikeshed
+        run: |
+          python3 -m pip install --upgrade bikeshed
+          bikeshed update
+
+      - name: Generate HTML
+        run: for bsdoc in ./*.bs; do bikeshed spec $bsdoc; done
