@@ -8,7 +8,7 @@
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://solid.github.io/security-considerations/" rel="canonical">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="2de5442dd82e9b0c8a6bff7fee3caf594ac19ea9" name="document-revision">
+  <meta content="3e984ea6a974988e5fb52d86ce9cebff23aa16ba" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -413,7 +413,7 @@ dfn > a.self-link::before      { content: "#"; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Solid Security Considerations</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2024-06-19">19 June 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2024-06-21">21 June 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -425,7 +425,7 @@ dfn > a.self-link::before      { content: "#"; }
       <dt>Created:
       <dd>Feb 20, 2024
       <dt>Modified:
-      <dd>19 June 2024
+      <dd>21 June 2024
       <dt>Issue Tracking:
       <dd><a href="https://github.com/solid/security-considerations/issues/">GitHub</a>
       <dt class="editor">Editor:
@@ -486,7 +486,9 @@ to cite this document as other than work in progress.</p>
    <div class="issue no-marker" id="issue-d41d8cd9②"><a class="self-link" href="#issue-d41d8cd9②"></a><a class="marker" href="https://github.com/solid/security-considerations/issues/5" style="text-transform:none">solid/security-considerations/5</a><a href="https://github.com/solid/security-considerations/issues/5">Document attacks possible when Solid-OIDC issuer is compromised</a></div>
    <div class="issue no-marker" id="issue-d41d8cd9③"><a class="self-link" href="#issue-d41d8cd9③"></a><a class="marker" href="https://github.com/solid/security-considerations/issues/6" style="text-transform:none">solid/security-considerations/6</a><a href="https://github.com/solid/security-considerations/issues/6">Document possible phishing attacks during authentication with Solid-OIDC</a></div>
    <h3 class="heading settled" data-level="1.2" id="serving-user-created-files"><span class="secno">1.2. </span><span class="content">Serving user-created files</span><a class="self-link" href="#serving-user-created-files"></a></h3>
-   <p>When Solid Servers <a data-link-type="biblio" href="#biblio-solidprotocol" title="Solid Protocol">[Solid.Protocol]</a> serve files created by different users, they break the common Web assumption that files and/or applications served within the same origin are automatically equally trustworthy.</p>
+   <p>When Solid Servers <a data-link-type="biblio" href="#biblio-solidprotocol" title="Solid Protocol">[Solid.Protocol]</a> serve files created by different users,
+they break the common Web assumption that files and/or applications served
+within the same origin are automatically equally trustworthy.</p>
    <p>An attacker could be any agent — human, browser, browser-based application,
 etc. — with a WebID. They need append/write access to the user’s server
 to store a malicious HTML file. They might have this access because the
@@ -502,26 +504,33 @@ benign application.</p>
    <h5 class="heading settled" data-level="1.2.1.1" id="prerequisites"><span class="secno">1.2.1.1. </span><span class="content">Prerequisites</span><a class="self-link" href="#prerequisites"></a></h5>
    <ul>
     <li data-md>
-     <p>When multiple agents are allowed to perform append or write operations in a storage, the attacker has append or write access to a publicly readable resource in a storage.</p>
+     <p>When multiple agents are allowed to perform append or write operations in a storage,
+the attacker has append or write access to a publicly readable resource in a storage.</p>
     <li data-md>
      <p>The server serves <a data-link-type="biblio" href="#biblio-solidos" title="SolidOS">[SolidOS]</a> under the same domain (e.g., by default, <a data-link-type="biblio" href="#biblio-communitysolidserver" title="Community Solid Server">[Community.Solid.Server]</a> serves everything under the same domain).</p>
     <li data-md>
-     <p>Once the victim is logged in via <a data-link-type="biblio" href="#biblio-solidos" title="SolidOS">[SolidOS]</a>, any new session is automatically logged in to the same account.</p>
+     <p>Once the victim is logged in via <a data-link-type="biblio" href="#biblio-solidos" title="SolidOS">[SolidOS]</a>, any new session is automatically logged
+in to the same account.</p>
    </ul>
    <h5 class="heading settled" data-level="1.2.1.2" id="attack"><span class="secno">1.2.1.2. </span><span class="content">Attack</span><a class="self-link" href="#attack"></a></h5>
-   <p>The attacker writes a malicious <code>text/html</code> file to the server. When this file is opened by the user:</p>
+   <p>The attacker writes a malicious <code>text/html</code> file to the server. When this file is opened
+by the user:</p>
    <ol>
     <li data-md>
-     <p>It opens <a data-link-type="biblio" href="#biblio-solidos" title="SolidOS">[SolidOS]</a> in a new tab and saves the window reference. (If the writer of this document recalls correctly, opening any non-existent resource from the server returns <a data-link-type="biblio" href="#biblio-solidos" title="SolidOS">[SolidOS]</a>.)</p>
+     <p>It opens <a data-link-type="biblio" href="#biblio-solidos" title="SolidOS">[SolidOS]</a> in a new tab and saves the window reference. (If the writer of
+this document recalls correctly, opening any non-existent resource from the server returns <a data-link-type="biblio" href="#biblio-solidos" title="SolidOS">[SolidOS]</a>.)</p>
     <li data-md>
      <p><a data-link-type="biblio" href="#biblio-solidos" title="SolidOS">[SolidOS]</a> automatically logs in, as the user who logged in there previously.</p>
     <li data-md>
-     <p>The <code>text/html</code> file can access <a data-link-type="biblio" href="#biblio-solidos" title="SolidOS">[SolidOS]</a> via the window reference, including performing authenticated fetch.</p>
+     <p>The <code>text/html</code> file can access <a data-link-type="biblio" href="#biblio-solidos" title="SolidOS">[SolidOS]</a> via the window reference, including
+performing authenticated fetch.</p>
     <li data-md>
-     <p>The <code>text/html</code> file can make any request in the name of the currently logged-in user, through this authenticated fetch.</p>
+     <p>The <code>text/html</code> file can make any request in the name of the currently logged-in user,
+through this authenticated fetch.</p>
    </ol>
    <h4 class="heading settled" data-level="1.2.2" id="steal-login-credentials"><span class="secno">1.2.2. </span><span class="content">Steal login credentials</span><a class="self-link" href="#steal-login-credentials"></a></h4>
-   <p>If a user saves credentials for an application on the same site as the Solid server, a malicious application could steal these credentials.</p>
+   <p>If a user saves credentials for an application on the same site as the Solid server,
+a malicious application could steal these credentials.</p>
    <h5 class="heading settled" data-level="1.2.2.1" id="prerequisites①"><span class="secno">1.2.2.1. </span><span class="content">Prerequisites</span><a class="self-link" href="#prerequisites①"></a></h5>
    <ul>
     <li data-md>
@@ -531,10 +540,13 @@ benign application.</p>
     <li data-md>
      <p>The storages are on the same domain as the IDP (default for <a data-link-type="biblio" href="#biblio-communitysolidserver" title="Community Solid Server">[Community.Solid.Server]</a>).</p>
     <li data-md>
-     <p>The user saved their login credentials (<code>/idp/login/</code> for <a data-link-type="biblio" href="#biblio-communitysolidserver" title="Community Solid Server">[Community.Solid.Server]</a>) via the browser or a password manager extension.</p>
+     <p>The user saved their login credentials (<code>/idp/login/</code> for <a data-link-type="biblio" href="#biblio-communitysolidserver" title="Community Solid Server">[Community.Solid.Server]</a>)
+via the browser or a password manager extension.</p>
    </ul>
    <h5 class="heading settled" data-level="1.2.2.2" id="attack①"><span class="secno">1.2.2.2. </span><span class="content">Attack</span><a class="self-link" href="#attack①"></a></h5>
-   <p>The attacker writes a malicious <code>text/html</code> file to the server. Depending on the tool used to store the login credentials, the actual autofill/suggestion behaviour can vary. For instance, if a user who saved login credentials with Chrome opens the malicious file:</p>
+   <p>The attacker writes a malicious <code>text/html</code> file to the server. Depending on the tool used
+to store the login credentials, the actual autofill/suggestion behaviour can vary. For instance,
+if a user who saved login credentials with Chrome opens the malicious file:</p>
    <ol>
     <li data-md>
      <p>The victim performs any interaction with the site (e.g., clicking on a cookie banner).</p>
@@ -550,10 +562,17 @@ benign application.</p>
     <li data-md>
      <p>Multiple agents can create files on the same server, which could render <code>same-origin</code> security boundaries useless.</p>
     <li data-md>
-     <p>As one possible countermeasure, servers could add a [<code>Content-Security-Policy: sandbox</code>](https://www.w3.org/TR/CSP3/#directive-sandbox) header to artificially enable <code>same-origin</code> security policies for files served on the same origin.</p>
+     <p>As one possible countermeasure, servers could add a
+[<code>Content-Security-Policy: sandbox</code>](https://www.w3.org/TR/CSP3/#directive-sandbox) header
+to artificially enable <code>same-origin</code> security policies for files served on the same origin.</p>
    </ul>
    <h5 class="heading settled" data-level="1.2.3.1" id="considerations"><span class="secno">1.2.3.1. </span><span class="content">Considerations</span><a class="self-link" href="#considerations"></a></h5>
-   <p>Servers are strongly encouraged to consider the countermeasures in the context of the use cases they want to enable or disable on a given storage. For instance, using <code>Content-Security-Policy: sandbox</code> will universally prohibit various functionalities for applications, including but not limited to accessing local storage, executing scripts, using forms, interacting with plugins, or including external content. This broad range of restrictions may not be desirable for various categories of applications that rely on client-side storage mechanisms, collaborative features, or dynamic content interaction.</p>
+   <p>Servers are strongly encouraged to consider the countermeasures in the context of the use cases
+they want to enable or disable on a given storage. For instance, using <code>Content-Security-Policy: sandbox</code> will universally prohibit various functionalities for
+applications, including but not limited to accessing local storage, executing scripts,
+using forms, interacting with plugins, or including external content. This broad range of
+restrictions may not be desirable for various categories of applications that rely on
+client-side storage mechanisms, collaborative features, or dynamic content interaction.</p>
    <h3 class="heading settled" data-level="1.3" id="protecting-webid-document"><span class="secno">1.3. </span><span class="content">Protecting WebID Document</span><a class="self-link" href="#protecting-webid-document"></a></h3>
    <p>Solid access policy enforcement relies heavily on the identities of agents. Requesting Parties are identified
 by <a data-link-type="biblio" href="#biblio-webid" title="WebID 1.0">[WebID]</a> and applications by ClientID <a data-link-type="biblio" href="#biblio-solidoidc" title="Solid OIDC">[Solid.OIDC]</a>.
