@@ -4,8 +4,8 @@ Boilerplate: issues-index no
 Boilerplate: omit conformance
 Shortname: solid-best-security-practice
 Level: 1
-Status: w3c/CG-DRAFT
-Group: Solid Community Group
+Status: CG-DRAFT
+Group: solidcg
 ED: https://solid.github.io/security-considerations/
 !Created: Feb 20, 2024
 !Modified: [DATE]
@@ -19,21 +19,6 @@ Editor: [elf Pavlik](https://elf-pavlik.hackers4peace.net/)
 Metadata Order: This version, Latest published version, Editor's Draft, Test Suite, Created, Modified, *, !*
 Abstract:
   This document describes a few issues related to security in the Solid ecosystem.  
-Status Text:
-  This section describes the status of this document at the time of its publication.
-
-  This document was published by the [Solid Community Group](https://www.w3.org/community/solid/) as
-  an Editor’s Draft. The information in this document is
-  still subject to change. You are invited to [contribute](https://github.com/solid/solid-oidc/issues)
-  any feedback, comments, or questions you might have.
-
-  Publication as an Editor’s Draft does not imply endorsement by the W3C Membership. This is a draft
-  document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate
-  to cite this document as other than work in progress.
-
-  This document was produced by a group operating under the [W3C Community Contributor License Agreement
-  (CLA)](https://www.w3.org/community/about/process/cla/). A human-readable
-  [summary](https://www.w3.org/community/about/process/cla-deed/) is available.
 </pre>
 
 # Attacks and Mitigations # {#attacks-and-mitigations}
